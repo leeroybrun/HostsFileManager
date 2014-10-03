@@ -1,0 +1,11 @@
+﻿<Window x:Class="HostsFileManager.Prompt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Prompt" Height="140" Width="300">
+    <Grid Margin="0,0,0,0">
+        <TextBlock x:Name="promptTextLabel" Text="Enter some text" Margin="10,10,10,70" />
+        <TextBox x:Name="ResponseTextBox" Margin="10,33,10,47" />
+        <Button Content="OK" Click="OKButton_Click" Margin="144,66,10,10" />
+        <Button Content="Cancel" IsCancel="True" Margin="10,66,153,10" />
+    </Grid>
+</Window>

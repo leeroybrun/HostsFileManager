@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace HostsFileManager
 {
@@ -17,6 +18,9 @@ namespace HostsFileManager
     {
         private ObservableCollection<string> _hostsFiles;
         private HostsFile _hostsFileLoaded;
+
+        [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+        private static extern UInt32 DnsFlushResolverCache();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -89,6 +93,15 @@ namespace HostsFileManager
             NotifyPropertyChanged("hostsFiles");
 
             this.LoadHostsFile(newName);
+        }
+
+        // Make the hosts file active
+        public void makeCurrentActive()
+        {
+            this._hostsFileLoaded.save();
+            this._hostsFileLoaded.save("hosts");
+
+            DnsFlushResolverCache();
         }
 
         // Get the list of host files

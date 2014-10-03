@@ -88,7 +88,7 @@ namespace HostsFileManager
 
         private void makeActiveButton_Click(object sender, RoutedEventArgs e)
         {
-            this.manager.hostsFileLoaded.makeActive();
+            this.manager.makeCurrentActive();
         }
 
         private void addEntryButton_Click(object sender, RoutedEventArgs e)

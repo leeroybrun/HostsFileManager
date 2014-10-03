@@ -84,13 +84,6 @@ namespace HostsFileManager
             }
         }
 
-        // Make the hosts file active
-        public void makeActive()
-        {
-            this.save();
-            this.save("hosts");
-        }
-
         // Add empty entry
         public void addEntry()
         {

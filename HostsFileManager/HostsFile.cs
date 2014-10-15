@@ -75,12 +75,19 @@ namespace HostsFileManager
                 fileName = "hosts_" + fileName;
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(Environment.SystemDirectory + "\\drivers\\etc\\" + fileName))
+            try
             {
-                foreach (HostsFileLine line in this.entries)
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(Environment.SystemDirectory + "\\drivers\\etc\\" + fileName))
                 {
-                    file.WriteLine(line.ToString());
+                    foreach (HostsFileLine line in this.entries)
+                    {
+                        file.WriteLine(line.ToString());
+                    }
                 }
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("An error occurred while saving the file.\nPlease run as Administrator or check your antivirus software.");
             }
         }
 
